@@ -1,0 +1,23 @@
+﻿@model IEnumerable<NoteSaver.Models.Note>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Update</title>
+</head>
+<body>
+    <div>
+        
+        <form action="/Home/Change" method="post">
+            <input type="hidden" value="@ViewBag.noteId" name="Id"/>
+            <textarea rows="3" cols="20" name="Body">@ViewBag.noteBody</textarea>
+            <input type="submit" value="Update" />
+        </form>
+    </div>
+</body>
+</html>

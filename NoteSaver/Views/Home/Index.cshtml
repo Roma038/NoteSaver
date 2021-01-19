@@ -1,0 +1,44 @@
+﻿@model IEnumerable<NoteSaver.Models.Note>
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Notes</title>
+        
+        
+        
+    </head>
+    <body>
+        <nav>
+            <ul>
+                <li>@Html.ActionLink("Back","Index","Home")</li>
+            </ul>
+        </nav>
+        <div>
+            @Styles.Render("~/Content/bootstrap-theme.css")
+            <script type="text/javascript" src="~/Scripts/jquery-3.4.1.slim.min.js"></script>
+            @{ int k = 0;}
+            @foreach (var item in Model)
+            {
+                k++;
+                <table>
+                    <tr>
+                        <td><h4>@k</h4></td>
+                        <td>@Html.TextAreaFor(i => item.Body, 3, 20, null)</td>
+                        <td>
+                            <input type="button" name="Delete" value="Delete" 
+                                   onclick="location.href='@Url.Action("Delete","Home",new { id = item.Id})'" />
+                        </td>
+                        <td>
+                            <input type="button" name="Change" value="Change"
+                                   onclick="location.href='@Url.Action("Update","Home",new { id = item.Id})'"/>
+                        </td>
+                    </tr>
+                </table>
+            }
+            <a href="/Home/AddNote">New</a>
+        </div>
+    </body>
+</html>
