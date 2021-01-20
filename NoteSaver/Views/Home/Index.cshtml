@@ -17,6 +17,7 @@
             </ul>
         </nav>
         <div>
+            
             @Styles.Render("~/Content/bootstrap-theme.css")
             <script type="text/javascript" src="~/Scripts/jquery-3.4.1.slim.min.js"></script>
             @{ int k = 0;}
@@ -38,7 +39,7 @@
                     </tr>
                 </table>
             }
-            <a href="/Home/AddNote">New</a>
+            <input type="button" name="New" value="New" onclick="location.href='@Url.Action("AddNote","Home")'"/>
         </div>
     </body>
 </html>
