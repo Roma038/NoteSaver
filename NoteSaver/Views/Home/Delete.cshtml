@@ -1,4 +1,4 @@
-﻿@model IEnumerable<NoteSaver.Models.Note>
+﻿@model NoteSaver.Models.Note
 @{
     Layout = null;
 }
@@ -8,15 +8,14 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Update</title>
+    <title>Delete</title>
 </head>
 <body>
     <div>
-        
-        <form action="/Home/Change" method="post">
-            <input type="hidden" value="@ViewBag.noteId" name="Id"/>
+        <form action="/Home/Delete" method="post">
             <textarea rows="3" cols="40" name="Body">@ViewBag.noteBody</textarea>
-            <input type="submit" value="Update" />
+            <input type="hidden" value="@ViewBag.NoteId" name="Id"/>
+            <input type="submit" value="Comfirm" />
         </form>
     </div>
 </body>

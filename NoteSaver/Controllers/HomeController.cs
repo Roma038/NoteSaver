@@ -21,33 +21,60 @@ namespace NoteSaver.Controllers
         [HttpPost]
         public ActionResult Change(Note note)
         {
-            
-            var _note = db.Notes.Where(i => i.Id == note.Id).FirstOrDefault();
-            _note.Body = note.Body;
-            db.SaveChanges();
-            db.Dispose();
-            
-            return RedirectToAction("Index");
+            if (note != null)
+            {
+                var _note = db.Notes.Where(i => i.Id == note.Id).FirstOrDefault();
+                _note.Body = note.Body;
+                //db.Entry(note).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+                db.Dispose();
+                
+                return RedirectToAction("Index");
+            }
+            return HttpNotFound();
         }
 
         //If client press "Update" button, request handled by this method
         //This method sends to the client side data from db by ViewBag
         //After handling return to client form
-        public ActionResult Update(int id)
+        public ActionResult Update(int? id)
         {
-            var _note = db.Notes.Where(i => i.Id == id).FirstOrDefault();
-            ViewBag.noteId = _note.Id;
-            ViewBag.noteBody = _note.Body;
-            return View();
+            if (id != null)
+            {
+                var _note = db.Notes.Where(i => i.Id == id).FirstOrDefault();
+                ViewBag.noteId = _note.Id;
+                ViewBag.noteBody = _note.Body;
+                return View();
+            }
+            return HttpNotFound();
+            
         }
         
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int? id)
         {
-            var _note = db.Notes.Where(i => i.Id == id).FirstOrDefault();
-            db.Notes.Remove(_note);
-            db.SaveChanges();
-            db.Dispose();
-            return RedirectToAction("Index");
+            if (id != null)
+            {
+                var _note = db.Notes.Where(i => i.Id == id).FirstOrDefault();
+                ViewBag.NoteId = _note.Id;
+                ViewBag.NoteBody = _note.Body;
+                return View();
+            }
+            return HttpNotFound();
+        }
+
+        [HttpPost]
+        public ActionResult Delete(Note note)
+        {
+            var _note = db.Notes.Where(i => i.Id == note.Id).FirstOrDefault();
+
+            if (_note != null)
+            {
+                db.Notes.Remove(_note);
+                db.SaveChanges();
+                db.Dispose();
+                return RedirectToAction("index");
+            }
+            return HttpNotFound();
         }
         //If client press button "New", request hanled by this method
         //This method return to client view with form

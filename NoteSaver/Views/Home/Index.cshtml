@@ -6,9 +6,8 @@
 <html>
     <head>
         <title>Notes</title>
-        
-        
-        
+        @Scripts.Render("~/bundles/modernizr-2.8.3.js")
+        @Styles.Render("~/Content/Site.css")
     </head>
     <body>
         <nav>
@@ -17,9 +16,7 @@
             </ul>
         </nav>
         <div>
-            
-            @Styles.Render("~/Content/bootstrap-theme.css")
-            <script type="text/javascript" src="~/Scripts/jquery-3.4.1.slim.min.js"></script>
+
             @{ int k = 0;}
             @foreach (var item in Model)
             {
@@ -27,7 +24,7 @@
                 <table>
                     <tr>
                         <td><h4>@k</h4></td>
-                        <td>@Html.TextAreaFor(i => item.Body, 3, 20, null)</td>
+                        <td>@Html.TextAreaFor(i => item.Body, 3, 40, null)</td>
                         <td>
                             <input type="button" name="Delete" value="Delete" 
                                    onclick="location.href='@Url.Action("Delete","Home",new { id = item.Id})'" />
@@ -39,7 +36,15 @@
                     </tr>
                 </table>
             }
-            <input type="button" name="New" value="New" onclick="location.href='@Url.Action("AddNote","Home")'"/>
+            <table>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td><input type="button" name="New" value="New" onclick="location.href='@Url.Action("AddNote","Home")'" /></td>
+                </tr>
+            </table>
+            
         </div>
     </body>
 </html>

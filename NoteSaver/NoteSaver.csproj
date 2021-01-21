@@ -404,6 +404,7 @@
     <Content Include="Views\Home\AddNote.cshtml" />
     <Content Include="Views\Home\Change.cshtml" />
     <Content Include="Views\Home\Update.cshtml" />
+    <Content Include="Views\Home\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
